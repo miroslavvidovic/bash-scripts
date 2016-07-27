@@ -10,7 +10,7 @@
 #   Simple todo application with csv database and a colorful
 #   output.
 # Usage:
-#
+#   Check help section for details.
 # -------------------------------------------------------
 # Script:
 
@@ -28,18 +28,22 @@ EndDate="undefined"
 Status="active"
 
 ## Colors
+
 # Text colors
 GrayText='\033[1;90m'
-BRed='\033[1;31m'
-BGreen='\033[1;32m'
+RedText='\033[1;31m'
+GreenText='\033[1;32m'
+BlueText='\033[1;34m'
 EndColor='\e[0m'
-# Backgrounds
+
+# Background colors
 RedBG='\e[101m'
 GrayBG='\e[100m'
 GreenBG='\e[42m'
 BlueBG='\e[44m'
 
 # Center text on the screen
+# Used for heading
 center() {
   case $1 in
     -[0-9]*) c_cols=${1#-}
@@ -75,15 +79,15 @@ write_data(){
 enter_data(){
   echo "Enter the name of the task and press [ENTER]:"
   echo -en "$BRed Example:$EndColor"
-  echo -e "$BGreen New Task $EndColor"
+  echo -e "$GreenText New Task $EndColor"
   read Name
   echo  "Describe the task and press [ENTER]:"
   echo -en "$BRed Example:$EndColor"
-  echo -e "$BGreen Migrate the applicaiton to a NoSQL database from.$EndColor"
+  echo -e "$GreenText Migrate the applicaiton to a NoSQL database from.$EndColor"
   read Description
   echo  "Enter the tags tags for the task one by one and press [ENTER]:"
   echo -en "$BRed Example:$EndColor"
-  echo -e "$BGreen tag1 tag2 tag3 tag4 $EndColor"
+  echo -e "$GreenText tag1 tag2 tag3 tag4 $EndColor"
   read Tags
 }
 
@@ -103,8 +107,8 @@ read_csv_file(){
     separator
     id=$(($id+1))
 
-    echo -e "$GrayBG Id $EndColor : $RedBG $id $EndColor $GrayBG Date created $EndColor : $datecreated\
- $GrayBG Name $EndColor : $GreenBG $name $EndColor $GrayBG Tags $EndColor : $BlueBG $tags $EndColor"
+    echo -e "$GrayBG Id $EndColor : $RedBG $id $EndColor $GrayBG Date created $EndColor : $GrayText $datecreated $EndColor\
+ $GrayBG Name $EndColor : $GreenText $name $EndColor $GrayBG Tags $EndColor : $BlueText $tags $EndColor"
 
   done
   IFS=$OLDIFS
@@ -143,9 +147,9 @@ delete_one_line(){
 }
 
 modify_one_line(){
-  delete_one_line $1
   enter_data
   sed -i "${1}i $DateCreated,$Name,$Description,$Tags,$StartDate,$EndDate,$Status" $datafile
+  delete_one_line $(($1+1))
 }
 
 show_table_data(){
