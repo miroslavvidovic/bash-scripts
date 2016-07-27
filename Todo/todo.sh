@@ -28,7 +28,6 @@ EndDate="undefined"
 Status="active"
 
 ## Colors
-
 # Text colors
 GrayText='\033[1;90m'
 RedText='\033[1;31m'
@@ -72,21 +71,17 @@ separator(){
 
 # Write the data to csv file (append)
 write_data(){
-  echo "$DateCreated,$Name,$Description,$Tags,$StartDate,$EndDate,$Status" >> $datafile
+  echo "$DateCreated,$Title,$Description,$Tags,$StartDate,$EndDate,$Status" >> $datafile
 }
 
 # Read the data from the user input
 enter_data(){
-  echo "Enter the name of the task and press [ENTER]:"
-  echo -en "$BRed Example:$EndColor"
-  echo -e "$GreenText New Task $EndColor"
-  read Name
-  echo  "Describe the task and press [ENTER]:"
-  echo -en "$BRed Example:$EndColor"
-  echo -e "$GreenText Migrate the applicaiton to a NoSQL database from.$EndColor"
+  echo -e "$RedText Enter the name of the task and press [ENTER]: $EndColor"
+  read Title
+  echo -e "$RedText Describe the task and press [ENTER]: $EndColor"
   read Description
-  echo  "Enter the tags tags for the task one by one and press [ENTER]:"
-  echo -en "$BRed Example:$EndColor"
+  echo -e "$RedText Enter the tags tags for the task one by one and press [ENTER]: $EndColor"
+  echo -en "$RedText Example:$EndColor"
   echo -e "$GreenText tag1 tag2 tag3 tag4 $EndColor"
   read Tags
 }
@@ -107,8 +102,8 @@ read_csv_file(){
     separator
     id=$(($id+1))
 
-    echo -e "$GrayBG Id $EndColor : $RedBG $id $EndColor $GrayBG Date created $EndColor : $GrayText $datecreated $EndColor\
- $GrayBG Name $EndColor : $GreenText $name $EndColor $GrayBG Tags $EndColor : $BlueText $tags $EndColor"
+    echo -e "$GrayBG Id $EndColor : $RedBG $id $EndColor $GrayBG Date created $EndColor : $RedText $datecreated $EndColor\
+ $GrayBG Title $EndColor : $GreenText $name $EndColor $GrayBG Tags $EndColor : $BlueText $tags $EndColor"
 
   done
   IFS=$OLDIFS
@@ -129,7 +124,7 @@ select_one_line(){
     if [ $id -eq "$1" ]; then
      printf "$GrayBG ID: %-8s $EndColor : $RedBG  $id $EndColor \n"
      printf "$GrayBG Date created $EndColor : $datecreated \n"
-     printf "$GrayBG Name %-7s $EndColor : $GreenBG $name $EndColor \n"
+     printf "$GrayBG Title %-7s $EndColor : $GreenBG $name $EndColor \n"
      printf "$GrayBG StartDate %-2s $EndColor : $startdate  \n"
      printf "$GrayBG EndDate %-4s $EndColor : $enddate  \n"
      printf "$GrayBG Description  $EndColor : $description \n"
@@ -148,7 +143,7 @@ delete_one_line(){
 
 modify_one_line(){
   enter_data
-  sed -i "${1}i $DateCreated,$Name,$Description,$Tags,$StartDate,$EndDate,$Status" $datafile
+  sed -i "${1}i $DateCreated,$Title,$Description,$Tags,$StartDate,$EndDate,$Status" $datafile
   delete_one_line $(($1+1))
 }
 
@@ -188,7 +183,7 @@ while getopts 'acd:m:nt:h' flag; do
       select_one_line $Id
       ;;
     h)
-      usage
+      help
       ;;
     *) error "Unexpected option ${flag}" ;;
   esac
