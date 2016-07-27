@@ -15,7 +15,7 @@
 # Script:
 
 # Database file
-datafile="data/todo.csv"
+datafile="todo_data/todo.csv"
 
 # Variables
 DateCreated=`date +%d.%m.%Y.`
@@ -23,7 +23,6 @@ Id=""
 Title=""
 Description=""
 Tags=""
-StartDate="undefined"
 EndDate="undefined"
 Status="active"
 
@@ -71,7 +70,7 @@ separator(){
 
 # Write the data to csv file (append)
 write_data(){
-  echo "$DateCreated,$Title,$Description,$Tags,$StartDate,$EndDate,$Status" >> $datafile
+  echo "$DateCreated,$Title,$Description,$Tags,$EndDate,$Status" >> $datafile
 }
 
 # Read the data from the user input
@@ -86,7 +85,7 @@ enter_data(){
   read Tags
 }
 
-# sed 1d - delete the first line of the file (csv header)
+# Read the csv file
 read_csv_file(){
   clear
 
@@ -97,13 +96,13 @@ read_csv_file(){
   INPUT=$datafile
   IFS=","
   [ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
-  (cat $INPUT) | while read datecreated name description tags startdate enddate status
+  (cat $INPUT) | while read datecreated title description tags enddate status
   do
     separator
     id=$(($id+1))
 
     echo -e "$GrayBG Id $EndColor : $RedBG $id $EndColor $GrayBG Date created $EndColor : $RedText $datecreated $EndColor\
- $GrayBG Title $EndColor : $GreenText $name $EndColor $GrayBG Tags $EndColor : $BlueText $tags $EndColor"
+ $GrayBG Title $EndColor : $GreenText $title $EndColor $GrayBG Tags $EndColor : $BlueText $tags $EndColor"
 
   done
   IFS=$OLDIFS
@@ -118,17 +117,16 @@ select_one_line(){
   INPUT=$datafile
   IFS=","
   [ ! -f $INPUT ] && { echo "$INPUT file not found"; exit 99; }
-  (cat $INPUT) | while read datecreated name description tags startdate enddate status
+  (cat $INPUT) | while read datecreated title description tags enddate status
   do
     id=$(($id+1))
     if [ $id -eq "$1" ]; then
      printf "$GrayBG ID: %-8s $EndColor : $RedBG  $id $EndColor \n"
-     printf "$GrayBG Date created $EndColor : $datecreated \n"
-     printf "$GrayBG Title %-7s $EndColor : $GreenBG $name $EndColor \n"
-     printf "$GrayBG StartDate %-2s $EndColor : $startdate  \n"
+     printf "$GrayBG Date created $EndColor : $RedText $datecreated $EndColor \n"
+     printf "$GrayBG Title %-6s $EndColor : $GreenText $title $EndColor \n"
      printf "$GrayBG EndDate %-4s $EndColor : $enddate  \n"
-     printf "$GrayBG Description  $EndColor : $description \n"
-     printf "$GrayBG Tags %-7s $EndColor : $BlueBG $tags $EndColor \n"
+     printf "$GrayBG Description  $EndColor : $GreenText $description $EndColor \n"
+     printf "$GrayBG Tags %-7s $EndColor : $BlueText $tags $EndColor \n"
      printf "$GrayBG Status %-5s $EndColor : $BlueBG $status $EndColor \n"
     fi
   done
@@ -143,7 +141,7 @@ delete_one_line(){
 
 modify_one_line(){
   enter_data
-  sed -i "${1}i $DateCreated,$Title,$Description,$Tags,$StartDate,$EndDate,$Status" $datafile
+  sed -i "${1}i $DateCreated,$Title,$Description,$Tags,$EndDate,$Status" $datafile
   delete_one_line $(($1+1))
 }
 
@@ -152,11 +150,15 @@ show_table_data(){
 }
 
 help(){
-  echo "help"
+  echo " $0 - script for managing tasks"
+  echo " $0 -n  -- add a new task"
+  echo " $0 -a  -- list all tasks"
+  echo " $0 -m1 -- update the task with id number 1"
+  echo " $0 -d1 -- delete the task with id number 1"
+  echo " $0 -c  -- show tasks using csvcut and csvlook"
 }
 
 main(){
-
 while getopts 'acd:m:nt:h' flag; do
   case "${flag}" in
     a)
