@@ -8,11 +8,16 @@
 # generates the new_script.sh file
 #
 
+# Shebang for bash
 SHEBANG="#!/usr/bin/env bash"
+# Date and time when the file was created
 DATE=`date +%d.%m.%Y.-%H:%M:%S`
+# Author
 AUTHOR="Miroslav Vidovic"
+# Name of the script
 SCRIPTNAME=$1
-SEPARATOR="-------------------------------------------------------"
+# Separator
+SEPARATOR=$(printf '%77s\n' | tr ' ' -)
 INFO="Info:"
 DESC="Description:"
 SCRIPT="Script:"
@@ -35,6 +40,7 @@ txt="$txt$comment$SEPARATOR\n"
 txt="$txt$comment$SCRIPT\n\n"
 txt="$txt$EXIT\n"
 
+# Check if the script name is not empty
 if [ -z "$SCRIPTNAME" ]; then
   echo "You need to enter the name of the bash script."
 else
