@@ -36,9 +36,21 @@ EOF
 check_for_empty_input(){
   if [ $# -eq 0 ];
   then
-      echo "No input"
+      echo "Error => No input"
+      echo $separator
       help
-      exit 0
+      exit 1
+    fi
+}
+
+# Check if the first input is not a flag
+check_for_invalid_input(){
+  if [[ ! $1 =~ ^\-.+  ]]
+    then
+      echo " Error => Invalid input. Use flags."
+      echo $separator
+      help
+      exit 1
     fi
 }
 
@@ -78,6 +90,7 @@ main(){
 }
 
 check_for_empty_input "$@"
+check_for_invalid_input "$@"
 main "$@"
 
 exit 0
