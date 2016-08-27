@@ -13,54 +13,68 @@
 # -------------------------------------------------------
 # Script:
 
-input=$1
-repository=$1
+# GitHub username
+USER="miroslavvidovic"
+# Url to the GitHub account for the $USER
+URL="https://github.com/$USER/"
 
-user="miroslavvidovic"
-url="https://github.com/$user/"
-
+# Clone a repository to the current directory
 clone_repository(){
   if [ -z "$repository" ]; then
     echo "ERROR: You need to enter the name of the repository you wish to clone."
   else
-    git clone $url$repository
+    git clone $URL$repository
   fi
 }
 
+# Get all the repositories for the user with curl and github api
 all_my_repositories(){
+  echo -e "All repositories for user $USER \n\n"
   curl -s "https://api.github.com/users/miroslavvidovic/repos" | grep -o 'git@[^"]*'
 }
 
-all_my_repositories_filtered(){
-  curl -s "https://api.github.com/users/miroslavvidovic/repos" | grep -o 'git@[^"]*' | sed 's/github.com:miroslavvidovic//g' | sed 's/git//g' | sed 's/@//g' | tr -d '/'
+# Get all the repositoris for the user with curl and github api and filter only
+# the repository name from the output with sed substitution
+all_my_repositories_short_name(){
+  echo -e "All repositories for user $USER \n\n"
+  curl -s "https://api.github.com/users/miroslavvidovic/repos" | grep -o 'git@[^"]*' |\
+    sed 's/git@github.com:miroslavvidovic\///g'
+}
+
+# my_github.sh with no input params triggers this error
+check_for_empty_input(){
+  if [ $# -eq 0 ];
+  then
+      echo -e "Error:  No input \n"
+      help
+      exit 1
+    fi
 }
 
 help(){
-  echo "Usage: $0
-        showall [show all the available repositories]
-        <string> [clone a repository with the given name]"
+  echo "Usage:
+        $0 -a [show all the available repositories]
+        $0 -i <repository_name> [clone a repository with the given name]"
 }
 
-#TODO convert ot optargs
 main(){
-  case "$input" in
+  check_for_empty_input "$@"
 
-    help) echo "Help"
-          echo ""
-          help
-      ;;
-    showall) echo "All repositories for user $user"
-             echo ""
-          all_my_repositories
-      ;;
-    *) echo "Cloning repository $repository"
-       echo ""
-      clone_repository $repository
-      ;;
+  while getopts 'ac:h' flag; do
+    case "${flag}" in
+      a)
+        all_my_repositories_short_name
+          ;;
+      c)
+        repository=${OPTARG}
+        clone_repository $repository
+          ;;
+      h) help
+          ;;
     esac
+  done
 }
 
-
-main
+main "$@"
 
 exit 0
