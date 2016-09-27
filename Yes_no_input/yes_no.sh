@@ -31,7 +31,7 @@ choice(){
 }
 
 main(){
-  choice "Do you want to look at the error log file? [Y/n]: "
+  choice "Do you want to look at the error log file? [y/n]: "
   if [ "$CHOICE" == "y" ]; then
     less /var/log/apache2/error.log
   fi
