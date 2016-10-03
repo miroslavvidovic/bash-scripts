@@ -54,7 +54,7 @@ check_for_empty_input(){
 help(){
   echo "Usage:
         $0 -a [show all the available repositories]
-        $0 -i <repository_name> [clone a repository with the given name]"
+        $0 -c <repository_name> [clone a repository with the given name]"
 }
 
 main(){
