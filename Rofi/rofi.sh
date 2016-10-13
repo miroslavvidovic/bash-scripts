@@ -7,10 +7,11 @@
 # 	12.10.2016.-09:43:45
 # -----------------------------------------------------------------------------
 # Description:
-#   Startup settings for rofi. After start rofi runs in a daemon and the
+#   Startup settings for rofi. When started rofi runs in a daemon and the
 #   specified keybindings can trigger window or run actions.
 # Usage:
-#   run the script or alias rofi to this script
+#   Run the script or alias rofi to this script or even better add the script to
+#   startup applications.
 # -----------------------------------------------------------------------------
 # Script:
 
