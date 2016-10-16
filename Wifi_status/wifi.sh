@@ -50,7 +50,6 @@ if [ "$(ifconfig $INTERFACE | grep UP | wc -l) -eq 1" ]; then
   fi
 
   printf "\e[0;%sm%s %s \e[m\n"  "$COLOR" "[$SIGNAL_QUALITY%]" "$link_name"
-  notify-send -i network-wireless "$link_name $SIGNAL_QUALITY%"
 
 fi
 }
