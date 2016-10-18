@@ -20,9 +20,11 @@
 readonly INTERFACE=wlo1
 
 set_colors() {
-  good_color="1;32"
-  middle_color="1;33"
-  warn_color="0;31"
+  good_color="1;38;5;10"
+  ok_color="1;38;5;190"
+  notgood_color=";38;5;11"
+  warn_color="1;38;5;196"
+  rbad_color="1;38;5;88"
 }
 
 set_colors
@@ -38,15 +40,15 @@ if [ "$(ifconfig $INTERFACE | grep UP | wc -l) -eq 1" ]; then
     COLOR=$good_color
   # > 50% quality
   elif [ $SIGNAL_QUALITY -gt 50 ]; then
-    COLOR=$good_color
+    COLOR=$ok_color
   # > 25% quality
   elif [ $SIGNAL_QUALITY -gt 25 ]; then
-    COLOR=$middle_color
+    COLOR=$notgood_color
   elif [ $SIGNAL_QUALITY -gt 0 ]; then
   # 0-25% link qual
     COLOR=$warn_color
   else # < 25%
-    COLOR=$warn_color
+    COLOR=$rbad_color
   fi
 
   printf "\e[0;%sm%s %s \e[m\n"  "$COLOR" "[$SIGNAL_QUALITY%]" "$link_name"
