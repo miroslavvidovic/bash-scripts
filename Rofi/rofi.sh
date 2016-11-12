@@ -16,15 +16,15 @@
 # Script:
 
 # ROFI Color theme and keybindings
-# Violet theme from the website (looks good on Ubuntu)
+# Gruvbox theme
 # Ctrl+Alt+o - search
 # Ctrl+Alt+w - select window
 rofi -key-run control+alt+o -key-window control+alt+w \
   -color-enabled true \
-  -color-normal "argb:a02f1e2e, #b4b4b4, argb:a02f1e2e, argb:54815ba4, #ffffff" \
-  -color-urgent "argb:272f1e2e, #ef6155, argb:2f2f1e2e, argb:54815ba4, #ef6155" \
-  -color-active "argb:272f1e2e, #815ba4, argb:2f2f1e2e, argb:54815ba4, #815ba4" \
-  -color-window "#2f1e2e, argb:36ef6155, argb:2fef6155" \
+  -color-normal "#1d2021, #ebdbb2, #282828, #504945, #fabd2f" \
+  -color-urgent "#cc241d, #1d2021, #cc241d, #fb4934, #1d2021" \
+  -color-active "#d79921, #1d2021, #d79921, #fabd2f, #1d2021" \
+  -color-window "#1d2021, #a89984, #a89984" \
   -separator-style  dash
 
 exit 0
