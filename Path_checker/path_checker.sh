@@ -13,12 +13,17 @@
 # -----------------------------------------------------------------------------
 # Script:
 
+# Colors
+green=$(tput setaf 2)
+red=$(tput setaf 1)
+normal=$(tput sgr0)
+
 exit_code=0
 
 for dir in ${PATH//:/ }; do
   [ -L "$dir" ] && printf "%b" "symlink, "
   if [ ! -d "$dir" ]; then
-    printf "%b" "missing\t\t\t\t"
+    printf "%b" "${red}missing${normal}\t\t\t\t"
     (( exit_code++ ))
   else
     stat=$(ls -lHd $dir | awk '{print $1, $3, $4}')
@@ -26,7 +31,7 @@ for dir in ${PATH//:/ }; do
       printf "%b" "world writable\t$stat "
       (( exit_code++ ))
     else
-      printf "%b" "ok\t\t$stat "
+      printf "%b" "${green}ok\t\t${normal}$stat"
     fi
   fi
   printf "%b" "$dir\n"
