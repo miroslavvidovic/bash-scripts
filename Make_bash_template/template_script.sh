@@ -3,22 +3,32 @@
 # Bash script generating a template script
 # script takes a script name as input and returns a text file
 # representing a bash script
+#
 # EXAMPLE:
 # bash template.sh new_script.sh
 # generates the new_script.sh file
-#
+
+# Name of the script from the firt param
+SCRIPTNAME=$1
 
 # Shebang for bash
 SHEBANG="#!/usr/bin/env bash"
-# Date and time when the file was created
-DATE=`date +%d.%m.%Y.-%H:%M:%S`
+INFO="Info:"
 # Author
-AUTHOR="Miroslav Vidovic"
-# Name of the script
-SCRIPTNAME=$1
+AUTHOR="author:    Miroslav Vidovic"
+# Date and time when the file was created
+DATE="created:   `date +%d.%m.%Y.-%H:%M:%S`"
+# File name
+FILE="file:      $SCRIPTNAME"
+# Revision
+REVISION="revision:  ---"
+# Version
+VERSION="version:   1.0"
 # Separator
 SEPARATOR=$(printf '%77s\n' | tr ' ' -)
-INFO="Info:"
+# Requirements
+REQUIREMENTS="Requirements: ---"
+# Description
 DESC="Description:"
 SCRIPT="Script:"
 EXIT="exit 0"
@@ -28,10 +38,14 @@ comment="# "
 txt="$SHEBANG\n\n"
 txt="$txt$comment$SEPARATOR\n"
 txt="$txt$comment$INFO\n"
-txt="$txt$comment\t$AUTHOR\n"
-txt="$txt$comment\t$SCRIPTNAME\n"
-txt="$txt$comment\t$DATE\n"
+txt="$txt$comment  $AUTHOR\n"
+txt="$txt$comment  $FILE\n"
+txt="$txt$comment  $DATE\n"
+txt="$txt$comment  $REVISION\n"
+txt="$txt$comment  $VERSION\n"
 txt="$txt$comment$SEPARATOR\n"
+txt="$txt$comment$REQUIREMENTS\n"
+txt="$txt$comment\n"
 txt="$txt$comment$DESC\n"
 txt="$txt$comment\n"
 txt="$txt$comment$USAGE\n"
