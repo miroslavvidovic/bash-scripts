@@ -17,5 +17,23 @@ input_file=$1
 
 timestamp=$(date +"%d.%m.%Y.-%H:%M:%S")
 
-sed -i -e "1i#!/bin/bash\n\n# -------------------------------------------------------\n# Info:\n#   Miroslav Vidovic\n#   $input_file\n#   $timestamp\n# -------------------------------------------------------\n# Description:\n#\n# Usage:\n#   $input_file\n#\n#   Lorem ipsum usage\n# -------------------------------------------------------\n# Script:\n" $input_file
+sed -i -e "1i#!/bin/bash\n\n\
+# -----------------------------------------------------------------------------\n\
+# Info:\n\
+#   author:    Miroslav Vidovic\n\
+#   file:      $input_file\n\
+#   created:   $timestamp\n\
+#   revision:  ---\n\
+#   version:   1.0\n\
+# -----------------------------------------------------------------------------\n\
+# Requirements:\n\
+#\n\
+# Description:\n\
+#\n\
+# Usage:\n\
+#   $input_file\n\
+#\n\
+#   Lorem ipsum usage\n\
+# -----------------------------------------------------------------------------\n\
+# Script:\n" $input_file
 
