@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# Bash script generating a template script
-# script takes a script name as input and returns a text file
-# representing a bash script
-#
+# Bash script that generates a template script with the info header.
+# Script takes a script name as input and returns a text file, representing 
+# a new bash script.
+
 # EXAMPLE:
 # bash template.sh new_script.sh
 # generates the new_script.sh file
