@@ -17,7 +17,7 @@ input_file=$1
 
 timestamp=$(date +"%d.%m.%Y.-%H:%M:%S")
 
-sed -i -e "1i#!/bin/bash\n\n\
+sed -i -e "1i#!/usr/bin/env bash\n\n\
 # -----------------------------------------------------------------------------\n\
 # Info:\n\
 #   author:    Miroslav Vidovic\n\
