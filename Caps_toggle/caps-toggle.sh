@@ -2,12 +2,16 @@
 
 # -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	caps-toggle.sh
-# 	17.08.2016.-11:30:20
+#   author:    Miroslav Vidovic
+#   file:      caps-toggle.sh
+#   created:   17.08.2016.-11:30:20
+#   revision:  26.12.2016.
+#   version:   1.1
 # -----------------------------------------------------------------------------
+# Requirements:
+#   setxkbmap
 # Description:
-#   Disable capslock.
+#   Easy way to disable or enable the capslock key.
 # Usage:
 #   caps-toggle.sh -y  --- enable capslock
 #   caps-toggle.sh -n  --- disable capslock
@@ -26,7 +30,7 @@ capslock_off(){
 
 help(){
 cat<< EOF
-  usage: $0 [-n] [-y] [-h]
+  usage: $(basename "$0") [-n] [-y] [-h]
 
   Disable / Enable the capslock key.
   ------
@@ -49,6 +53,7 @@ check_for_empty_input(){
 }
 
 main(){
+  check_for_empty_input "$@"
   while getopts 'nyh' flag; do
     case "${flag}" in
       n) capslock_off ;;
@@ -57,9 +62,9 @@ main(){
       *) echo -e "\n"; help ;;
     esac
   done
+shift "$((OPTIND - 1))" 
 }
 
-check_for_empty_input "$@"
 main "$@"
 
 exit 0
