@@ -1,16 +1,20 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# -------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	my_servers.sh
-# 	24.04.2016.-12:58:46
-# -------------------------------------------------------
+#   author:    Miroslav Vidovic
+#   file:      my-services.sh
+#   created:   24.04.2016.-12:58:46
+#   revision:  28.12.2016.
+#   version:   1.1
+# -----------------------------------------------------------------------------
+# Requirements:
+#
 # Description:
-#   Check the status of my local services.
+#   Check the status of local services.
 # Usage:
-#   bash my_servers.sh
-# -------------------------------------------------------
+#   my-services.sh
+# -----------------------------------------------------------------------------
 # Script:
 
 # Colors
@@ -19,8 +23,8 @@ GreenText='\033[1;32m'
 BlueText='\033[1;34m'
 EndColor='\e[0m'
 
-# Services on my pc
-services=(apache2.service mysql.service mongodb.service couchdb.service)
+# Services to check
+services=(apache2.service mysql.service mongodb.service couchdb.service monit.service)
 
 # Separator line
 separator(){
