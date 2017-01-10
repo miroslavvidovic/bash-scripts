@@ -24,7 +24,7 @@ BlueText='\033[1;34m'
 EndColor='\e[0m'
 
 # Services to check
-services=(apache2.service mysql.service mongodb.service couchdb.service monit.service)
+services=(apache2.service mysql.service mongodb.service couchdb.service monit.service docker.service)
 
 # Separator line
 separator(){
