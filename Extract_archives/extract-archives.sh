@@ -1,26 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# -------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	extract_archives.sh
-# 	13.04.2016.-12:34:31
-# -------------------------------------------------------
+#   author:    Miroslav Vidovic
+#   file:      extract-archives.sh
+#   created:   13.04.2016.-12:34:31
+#   revision:  12.01.2017.
+#   version:   1.1
+# -----------------------------------------------------------------------------
+# Requirements:
+#   tar, unzip, uncompress, bunzip2, gunzip, 7z
 # Description:
 #   Script to extract most popular archive formats on linux.
 # Usage:
 #   extract_archives.sh file_to_extract.tar.bz2
-# -------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Script:
 
 file=$1
 
-function extract()
-{
+extract(){
     if [ -f $file ] ; then
         case $file in
             *.tar.bz2)   tar xvjf $file     ;;
             *.tar.gz)    tar xvzf $file     ;;
+            *.tar.xz)    tar xvjf $file     ;;
             *.bz2)       bunzip2 $file      ;;
             *.rar)       unrar x $file      ;;
             *.gz)        gunzip $file       ;;
