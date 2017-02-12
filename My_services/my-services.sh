@@ -5,8 +5,8 @@
 #   author:    Miroslav Vidovic
 #   file:      my-services.sh
 #   created:   24.04.2016.-12:58:46
-#   revision:  28.12.2016.
-#   version:   1.1
+#   revision:  12.02.2017.
+#   version:   1.3
 # -----------------------------------------------------------------------------
 # Requirements:
 #
@@ -24,7 +24,7 @@ BlueText='\033[1;34m'
 EndColor='\e[0m'
 
 # Services to check
-services=(apache2.service mysql.service mongodb.service couchdb.service monit.service docker.service)
+services=(apache2.service mysql.service mongodb.service couchdb.service monit.service docker.service ssh.service)
 
 # Separator line
 separator(){
