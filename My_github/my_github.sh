@@ -1,21 +1,28 @@
 #!/usr/bin/env bash
 
-# -------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	my_github.sh
-# 	12.05.2016.-18:42:29
-# -------------------------------------------------------
+#   author:    Miroslav Vidovic
+#   file:      my_github.sh
+#   created:   12.05.2016.-18:42:29
+#   revision:  04.04.2017.
+#   version:   2.0
+# -----------------------------------------------------------------------------
+# Requirements:
+#   git, jq
 # Description:
-#   Shortcut to my github account
+#   Manage your GitHub repositories using bash and GitHub API.
 # Usage:
-#   Check help section
-# -------------------------------------------------------
+#   my_github.sh
+# -----------------------------------------------------------------------------
+SCRIPTNAME=$(basename $0)
+
 # Script:
 
 # GitHub username
 USER="miroslavvidovic"
-# Url to the GitHub account for the $USER
+
+# GitHub account URL
 URL="https://github.com/$USER/"
 
 # Clone a repository to the current directory
@@ -27,18 +34,22 @@ clone_repository(){
   fi
 }
 
-# Get all the repositories for the user with curl and github api
-all_my_repositories(){
-  echo -e "All repositories for user $USER \n\n"
-  curl -s "https://api.github.com/users/miroslavvidovic/repos" | grep -o 'git@[^"]*'
+# Get all the public repositories for the user with curl and github api and filter only
+# the repository name from the output with sed substitution
+public_repositories(){
+  echo -e "Public repositories for $USER \n\n"
+  curl -s "https://api.github.com/users/$USER/repos?per_page=1000" | grep -o 'git@[^"]*' |\
+    sed "s/git@github.com:$USER\///g"
 }
 
-# Get all the repositoris for the user with curl and github api and filter only
-# the repository name from the output with sed substitution
-all_my_repositories_short_name(){
-  echo -e "All repositories for user $USER \n\n"
-  curl -s "https://api.github.com/users/miroslavvidovic/repos" | grep -o 'git@[^"]*' |\
-    sed 's/git@github.com:miroslavvidovic\///g'
+starred_repositories(){
+  echo -e "Repositories starred by $USER \n\n"
+  curl -s "https://api.github.com/users/$USER/starred?per_page=1000" | jq -r '.[] | .html_url +" => "+ .description'
+}
+
+gists(){
+  echo -e "Public gists by $USER \n\n"
+  curl -s "https://api.github.com/users/$USER/gists?per_page=1000" | jq -r '.[] | .html_url +" => "+ .description'
 }
 
 # my_github.sh with no input params triggers this error
@@ -52,27 +63,36 @@ check_for_empty_input(){
 }
 
 help(){
-  echo "Usage:
-        $0 -a [show all the available repositories]
-        $0 -c <repository_name> [clone a repository with the given name]"
+  echo "$SCRIPTNAME usage:
+          -a                        Show all the available repositories
+          -c [repository_name]      Clone a repository with the given name
+          -s                        Show all starred repositories
+          -g                        Show all gists"
 }
 
 main(){
   check_for_empty_input "$@"
 
-  while getopts 'ac:h' flag; do
+  while getopts 'ac:ghs' flag; do
     case "${flag}" in
       a)
-        all_my_repositories_short_name
+        public_repositories
           ;;
       c)
         repository=${OPTARG}
         clone_repository $repository
           ;;
+      g)
+        gists
+          ;;
+      s)
+        starred_repositories
+          ;;
       h) help
           ;;
     esac
   done
+  shift $((OPTIND-1))
 }
 
 main "$@"
