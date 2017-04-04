@@ -15,7 +15,7 @@
 # Usage:
 #   my_github.sh
 # -----------------------------------------------------------------------------
-SCRIPTNAME=$(basename $0)
+SCRIPTNAME=$(basename "$0")
 
 # Script:
 
@@ -30,7 +30,7 @@ clone_repository(){
   if [ -z "$repository" ]; then
     echo "ERROR: You need to enter the name of the repository you wish to clone."
   else
-    git clone $URL$repository
+    git clone "$URL$repository"
   fi
 }
 
@@ -80,7 +80,7 @@ main(){
           ;;
       c)
         repository=${OPTARG}
-        clone_repository $repository
+        clone_repository "$repository"
           ;;
       g)
         gists
