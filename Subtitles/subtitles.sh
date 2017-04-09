@@ -5,8 +5,8 @@
 #   author:    Miroslav Vidovic
 #   file:      subtitles.sh
 #   created:   14.10.2016.-20:58:57
-#   revision:  08.03.2017.
-#   version:   1.1
+#   revision:  09.04.2017.
+#   version:   1.2
 # -----------------------------------------------------------------------------
 # Requirements:
 #   subliminal
@@ -21,15 +21,19 @@
 
 main(){
   # Check if subliminal is installed
-  hash subliminal 2>/dev/null || { echo >&2 "I require subliminal but it's not installed.  Aborting."; exit 1; }
+  hash subliminal 2>/dev/null || { echo >&2 "Subliminal required but it's not installed.  Aborting."; exit 1; }
   # Check for empty input
   if [[ -z "$@" ]]; then
     echo "Input file needed."
   else
     # Download English and Serbian subtitles
     subliminal download -l en -l srp "$@"
-    # Send notification
-    notify-send "Subtitles.sh finished"
+
+    # Send notification if notify-send is available
+    if hash notify-send 2>/dev/null; then
+      notify-send "Subtitles.sh finished"
+    fi
+
     # If sound.sh script is available use it to play a sound 
     if hash sound.sh 2>/dev/null; then
       sound.sh
