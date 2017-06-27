@@ -29,7 +29,7 @@ battery_charge() {
   battery_state=$(cat $battery_path/status)
   battery_full=$battery_path/charge_full
   battery_current=$battery_path/charge_now
-  if [ "$battery_state" == 'Discharging' ]; then
+  if [ $battery_state == 'Discharging' ]; then
     BATT_CONNECTED=0
   else
     BATT_CONNECTED=1
