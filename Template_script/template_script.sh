@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Bash script that generates a template script with the info header.
-# Script takes a script name as input and returns a text file, representing 
+# Script takes a script name as input and returns a text file, representing
 # a new bash script.
 
 # Separator
@@ -36,15 +36,15 @@ $SHEBANG
 #   author:    $AUTHOR
 #   file:      $SCRIPTNAME
 #   created:   $DATE
-#   revision:  ---
+#   revision:
 #   version:   1.0
 # $SEPARATOR
-# Requirements: 
-# 
+# Requirements:
+#
 # Description:
-# 
+#
 # Usage:
-# 
+#
 # $SEPARATOR
 # Script:
 
