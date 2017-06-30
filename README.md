@@ -10,6 +10,9 @@
 
 </div>
 
+## subtitles
+Download subtitles in multiple languages with a wrapper script for <a href="https://github.com/Diaoul/subliminal">subliminal</a>
+
 ## License
 
 The MIT License (MIT)
