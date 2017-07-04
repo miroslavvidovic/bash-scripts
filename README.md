@@ -11,10 +11,13 @@
 </div>
 
 ## subtitles
-Download subtitles in multiple languages with a wrapper script for [subliminal](https://github.com/Diaoul/subliminal)
+Download subtitles in multiple languages with a wrapper script for [subliminal](https://github.com/Diaoul/subliminal).
 
 ## iponmap
-Display the location of an IP address on a map using the [IPonMap](https://en.iponmap.com/) website
+Display the location of an IP address on a map using the [IPonMap](https://en.iponmap.com/) website.
+
+## mo-templating
+Testing the awesome templating engine for bash - [mo](https://github.com/tests-always-included/mo). Mustache templates in bash.
 
 ## License
 
