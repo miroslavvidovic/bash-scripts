@@ -11,7 +11,10 @@
 </div>
 
 ## subtitles
-Download subtitles in multiple languages with a wrapper script for <a href="https://github.com/Diaoul/subliminal">subliminal</a>
+Download subtitles in multiple languages with a wrapper script for [subliminal](https://github.com/Diaoul/subliminal)
+
+## iponmap
+Display the location of an IP address on a map using the [IPonMap](https://en.iponmap.com/) website
 
 ## License
 
