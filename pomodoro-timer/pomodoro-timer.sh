@@ -19,8 +19,25 @@
 # -----------------------------------------------------------------------------
 # Script:
 
+SCRIPTNAME=$(basename "$0")
+
+help(){
+  echo "usage: $SCRIPTNAME [-h] sessions_num work_duration rest_duration
+
+    sessions_num    number of of pomodoro sessions
+    work_duration   duration of a work block in minutes
+    rest_duration   duration of a rest block in minutes
+
+    -h, --help      show this help message and exit
+
+    default values used when parameters are provided 
+    $SCRIPTNAME 1 25 5
+  "
+
+}
+
 # Set the parameters based on the user input or default values
-# default: one sesion - 25 minutes of work and 5 minutes of rest
+# default: one session - 25 minutes of work and 5 minutes of rest
 set_params(){
   # Get the user input if any is available
   iterations="$1"
@@ -76,6 +93,12 @@ send_a_notification(){
 }
 
 main(){
+  # Check for help flags
+  if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
+    help
+    exit 1
+  fi
+
   set_params "$@"
 
   while [[ 0 -ne "$iterations" ]]; do
