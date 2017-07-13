@@ -33,7 +33,7 @@ main(){
 
     # Send notification if notify-send is available
     if hash notify-send 2>/dev/null; then
-      notify-send "Subtitles.sh finished"
+      notify-send --urgency="critical" "Subtitles.sh finished"
     fi
 
     # If sound.sh script is available use it to play a sound
