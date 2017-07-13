@@ -19,6 +19,9 @@ Display the location of an IP address on a map using the [IPonMap](https://en.ip
 ## mo-templating
 Testing the awesome templating engine for bash - [mo](https://github.com/tests-always-included/mo). Mustache templates in bash.
 
+## pomodoro-timer
+A simple timer script for the pomodoro technique. [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a popular time management method.
+
 ## License
 
 The MIT License (MIT)
