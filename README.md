@@ -10,6 +10,9 @@
 
 </div>
 
+## eclipse-management
+Manage multiple Eclipse versions and start them from the terminal.
+
 ## subtitles
 Download subtitles in multiple languages with a wrapper script for [subliminal](https://github.com/Diaoul/subliminal).
 
