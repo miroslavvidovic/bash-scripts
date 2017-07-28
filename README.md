@@ -25,6 +25,9 @@ Testing the awesome templating engine for bash - [mo](https://github.com/tests-a
 ## pomodoro-timer
 A simple timer script for the pomodoro technique. [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a popular time management method.
 
+## random-movie
+Randomly choose and play a video file from a given system path.
+
 ## License
 
 The MIT License (MIT)
