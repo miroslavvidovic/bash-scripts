@@ -19,6 +19,9 @@ Download subtitles in multiple languages with a wrapper script for [subliminal](
 ## iponmap
 Display the location of an IP address on a map using the [IPonMap](https://en.iponmap.com/) website.
 
+## man2pdf
+Convert a man to pdf and open it.
+
 ## mo-templating
 Testing the awesome templating engine for bash - [mo](https://github.com/tests-always-included/mo). Mustache templates in bash.
 
