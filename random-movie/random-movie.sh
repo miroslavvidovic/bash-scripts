@@ -29,7 +29,7 @@ main(){
   # mkv, mp4, wmv, flv, webm, mov, avi
   readarray -t movie_array <<< "$( find "$MOVIES_LOCATION" -type f -name '*.mkv' -o -name '*.avi' -o -name '*.mp4' -o -name '*.wmv' -o -name '*.flv' -o -name '*.webm' -o -name '*.mov')"
 
-  # Number of item in movie_array
+  # Number of items in movie_array
   num_of_movies="${#movie_array[@]}"
   max_random=$((num_of_movies - 1))
   # Create a random number between 0 and max_random
