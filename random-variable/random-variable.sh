@@ -18,8 +18,10 @@
 # -----------------------------------------------------------------------------
 # Script:
 
+# File containing the words
 # Wordfile can be dict location on linux => /usr/share/dict
-WORDFILE=./words.txt
+# this assumes that the file is in the same location as the script
+WORDFILE=$(dirname $0)/words.txt
 
 get_word() {
   local word
