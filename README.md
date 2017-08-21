@@ -31,6 +31,9 @@ A simple timer script for the pomodoro technique. [Pomodoro technique](https://e
 ## random-movie
 Randomly choose and play a video file from a given system path.
 
+## vimmv
+Rename multiple files in Vim.
+
 ## License
 
 The MIT License (MIT)
