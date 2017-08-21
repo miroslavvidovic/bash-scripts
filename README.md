@@ -31,6 +31,9 @@ A simple timer script for the pomodoro technique. [Pomodoro technique](https://e
 ## random-movie
 Randomly choose and play a video file from a given system path.
 
+## random-variable
+Randomly generate variable names.
+
 ## vimmv
 Rename multiple files in Vim.
 
