@@ -10,6 +10,9 @@
 
 </div>
 
+## chuck-norris
+Get a random joke from the [chucknorris](https://api.chucknorris.io/) API.
+
 ## eclipse-management
 Manage multiple Eclipse versions and start them from the terminal.
 
