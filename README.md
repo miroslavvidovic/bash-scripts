@@ -28,6 +28,9 @@ Convert a man to pdf and open it.
 ## mo-templating
 Testing the awesome templating engine for bash - [mo](https://github.com/tests-always-included/mo). Mustache templates in bash.
 
+## my-services
+Check the status of selected system services with systemctl.
+
 ## pomodoro-timer
 A simple timer script for the pomodoro technique. [Pomodoro technique](https://en.wikipedia.org/wiki/Pomodoro_Technique) is a popular time management method.
 
