@@ -2,14 +2,17 @@
 
 # -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	battery.sh
-# 	12.10.2016.-16:26:32
+#   author:    Miroslav Vidovic
+#   file:      battery.sh
+#   created:   12.10.2016.-16:26:32
+#   revision:  30.08.2017.
+#   version:   1.1
 # -----------------------------------------------------------------------------
 # Description:
 #   Battery status with output in colors.
 # Usage:
-#   bash battery.sh
+#   Set the correct path to your system battery status directory
+#   battery_path=/sys/class/power_supply/BAT0
 # Credit:
 #   https://github.com/Goles/Battery
 # -----------------------------------------------------------------------------
@@ -17,19 +20,18 @@
 
 # For default behavior
 setDefaults() {
-  good_color="1;32"
-  middle_color="1;33"
-  warn_color="0;31"
+  green=$(tput setaf 2)
+  yellow=$(tput setaf 3)
+  red=$(tput setaf 1)
+  blue=$(tput setaf 4)
   battery_path=/sys/class/power_supply/BAT0
 }
-
-setDefaults
 
 battery_charge() {
   battery_state=$(cat $battery_path/status)
   battery_full=$battery_path/charge_full
   battery_current=$battery_path/charge_now
-  if [ $battery_state == 'Discharging' ]; then
+  if [ "$battery_state" == 'Discharging' ]; then
     BATT_CONNECTED=0
   else
     BATT_CONNECTED=1
@@ -41,22 +43,26 @@ battery_charge() {
 
 # Apply the correct color to the battery status prompt
 apply_colors() {
-# Green
-if [[ $BATT_PCT -ge 75 ]]; then
-  COLOR=$good_color
+  # battery above 75 (great)
+  if [[ $BATT_PCT -ge 75 ]]; then
+    COLOR=$green
 
-# Yellow
-elif [[ $BATT_PCT -ge 25 ]] && [[ $BATT_PCT -lt 75 ]]; then
-  COLOR=$middle_color
+  # battery between 50 and 75 (good)
+  elif [[ $BATT_PCT -ge 50 ]] && [[ $BATT_PCT -lt 75 ]]; then
+    COLOR=$blue
 
-# Red
-elif [[ $BATT_PCT -lt 25 ]]; then
-  COLOR=$warn_color
-fi
+  # battery between 25 and 50 (ok)
+  elif [[ $BATT_PCT -ge 25 ]] && [[ $BATT_PCT -lt 50 ]]; then
+    COLOR=$yellow
+
+  # battery below 25 (bad)
+  elif [[ $BATT_PCT -lt 25 ]]; then
+    COLOR=$red
+  fi
 }
 
 print_status() {
-# Print the battery status
+  # Print the battery status
   # If charger connected
   if ((BATT_CONNECTED)); then
     GRAPH="⚡"
@@ -64,11 +70,16 @@ print_status() {
     GRAPH="|"
   fi
 
-  printf "\e[0;%sm%s %s \e[m\n"  "$COLOR" "[$BATT_PCT%]"  "$GRAPH"
+  echo "$COLOR" "[$BATT_PCT%]" "$GRAPH"
 }
 
-battery_charge
-apply_colors
-print_status
+main() {
+  setDefaults
+  battery_charge
+  apply_colors
+  print_status
+}
+
+main
 
 exit 0

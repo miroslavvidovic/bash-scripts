@@ -10,6 +10,9 @@
 
 </div>
 
+## batery-status
+Display battery percentage in a colorful format.
+
 ## chuck-norris
 Get a random joke from the [chucknorris](https://api.chucknorris.io/) API.
 
