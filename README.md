@@ -16,6 +16,9 @@ Display battery percentage in a colorful format.
 ## chuck-norris
 Get a random joke from the [chucknorris](https://api.chucknorris.io/) API.
 
+## dowload-music
+Download music from youtube with [youtube-dl](https://rg3.github.io/youtube-dl/).
+
 ## eclipse-management
 Manage multiple Eclipse versions and start them from the terminal.
 
