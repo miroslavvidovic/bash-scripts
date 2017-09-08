@@ -34,6 +34,9 @@ Convert a man to pdf and open it.
 ## mo-templating
 Testing the awesome templating engine for bash - [mo](https://github.com/tests-always-included/mo). Mustache templates in bash.
 
+## my-bitbuket
+Interact with your Bitbucket account using the Bitbucket API.
+
 ## my-services
 Check the status of selected system services with systemctl.
 
