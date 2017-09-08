@@ -59,7 +59,7 @@ main(){
   help_message
 }
 
-main "$@"
+main
 
 exit 0
 _EOF_
