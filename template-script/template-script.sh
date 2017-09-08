@@ -11,7 +11,7 @@ SEPARATOR=$(printf '%77s\n' | tr ' ' -)
 SHEBANG="#!/usr/bin/env bash"
 
 # Author
-AUTHOR="Miroslav Vidovic"
+AUTHOR="Miroslav Vidovic (miroslav-vidovic@hotmail.com)"
 
 # Name of the script from the first parameter
 SCRIPTNAME="$1"
@@ -48,14 +48,28 @@ $SHEBANG
 # $SEPARATOR
 # Script:
 
+SCRIPTNAME=\$(basename "\$0")
+
+help_message(){
+  echo "Usage :  \$SCRIPTNAME [options] args
+    "
+}
+
+main(){
+  help_message
+}
+
+main "$@"
+
 exit 0
 _EOF_
 }
 
 main(){
   check_input
-  info_header > "$SCRIPTNAME"
+  info_header "$@" > "$SCRIPTNAME"
 }
 
-main
+main "$@"
+
 exit 0

@@ -46,6 +46,9 @@ Randomly choose and play a video file from a given system path.
 ## random-variable
 Randomly generate variable names.
 
+## template-script
+Template script used to create bash scripts.
+
 ## vimmv
 Rename multiple files in Vim.
 
