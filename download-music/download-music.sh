@@ -16,21 +16,56 @@
 #
 # -----------------------------------------------------------------------------
 # Script:
+SCRIPTNAME=$(basename "$0")
+
 download_list="$1"
 
-check_dependency(){
-# Check if subliminal is installed
-hash "$1" 2>/dev/null || { 
-  echo >&2 "$1 required but it's not installed.  Aborting."; exit 1; 
+help_message(){
+  echo "
+  Usage: $SCRIPTNAME URLFILE
+
+  Download music from youtube.
+
+  URLFILE : file with urls for youtube videos
+
+  Options:
+  -h  Show this help message and exit.
+  "
 }
+
+check_existence(){
+  local requirements=("$@")
+  for app in "${requirements[@]}"; do
+    type "$app" >/dev/null 2>&1 || \
+      { echo >&2 "$app is required but it's not installed. Aborting."; exit 1; }
+  done
+}
+
+check_for_empty_input(){
+  if [ $# -eq 0 ];
+  then
+      echo -e "Error:  No input \n"
+      help_message
+      exit 1
+    fi
 }
 
 main(){
-  check_dependency youtube-dl
+  check_existence youtube-dl
+  check_for_empty_input "$@"
 
-  youtube-dl -o '%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality 0 -a $download_list --restrict-filenames
+  while getopts 'h' flag; do
+    case "${flag}" in
+      h)  help_message
+          exit 0
+          ;;
+    esac
+  done
+  shift $((OPTIND-1))
+
+  youtube-dl -o '%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality 0 -a "$download_list" --restrict-filenames
 }
 
-main
+main "$@"
 
 exit 0
