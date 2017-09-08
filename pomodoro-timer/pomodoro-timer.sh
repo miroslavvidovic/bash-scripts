@@ -21,6 +21,10 @@
 
 SCRIPTNAME=$(basename "$0")
 
+# syles
+bold=$(tput bold)
+normal=$(tput sgr0)
+
 help(){
   echo "usage: $SCRIPTNAME [-h] sessions_num work_duration rest_duration
 
@@ -67,7 +71,7 @@ session(){
   duration="$1"
   session_type="$2"
   while [[ 0 -ne "$duration" ]]; do
-      echo -ne "$duration seconds left" \\r
+      echo -ne "${bold}$duration${normal} seconds left" \\r
       sleep 1
       duration=$((duration-1))
   done
@@ -93,7 +97,6 @@ send_a_notification(){
 }
 
 main(){
-  # Check for help flags
   if [[ "$1" == "-h" ]] || [[ "$1" == "--help" ]]; then
     help
     exit 1
