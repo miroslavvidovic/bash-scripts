@@ -8,13 +8,13 @@
 #   revision:  ---
 #   version:   1.0
 # -----------------------------------------------------------------------------
-# Requirements: 
+# Requirements:
 #   gcalcli zenity
-# 
+#
 # Description:
-#   Add Google calendar events with gcalcli and zenity forms. 
+#   Add Google calendar events with gcalcli and zenity forms.
 # Usage:
-#   zenity-gcalcli.sh 
+#   zenity-gcalcli.sh
 # -----------------------------------------------------------------------------
 # Script:
 
@@ -56,7 +56,7 @@ insert_with_zenity() {
   # Extract day and month from the date
   day=$(echo "$date" | cut -d "." -f 1 | tr "'" " ")
   month=$(echo "$date" | cut -d "." -f 2)
-  
+
   # Use gcalcli to add a quick task to google calendar
   gcalcli --calendar $GMAIL quick "$title at $time $month/$day"
 }

@@ -49,6 +49,10 @@ Randomly generate variable names.
 ## vimmv
 Rename multiple files in Vim.
 
+## zenity-gcalcli
+[Zenity](https://help.gnome.org/users/zenity/stable/) form for the google calendar command line interface - [gcalcli](https://github.com/insanum/gcalcli).
+
+
 ## License
 
 The MIT License (MIT)
