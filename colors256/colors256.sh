@@ -2,14 +2,14 @@
 
 # -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	colors256.sh
-# 	24.10.2016.-15:05:34
+#   author:    Miroslav Vidovic
+#   file:      colors256.sh
+#   created:   24.10.2016.-15:05:34
+#   revision:  09.09.2017.
+#   version:   1.1
 # -----------------------------------------------------------------------------
 # Description:
-#   Display 256 colors in the terminal. 
-# Usage:
-# 
+#   Display 256 colors in the terminal.
 # Credit:
 #   http://misc.flogisoft.com/bash/home
 # -----------------------------------------------------------------------------
@@ -20,11 +20,11 @@ for fgbg in 38 48 ; do #Foreground/Background
   #Display the color
   echo -en "\e[${fgbg};5;${color}m ${color}\t\e[0m"
   #Display 10 colors per lines
-  if [ $((($color + 1) % 10)) == 0 ] ; then
-    echo #New line
+  if [ $(((color + 1) % 10)) == 0 ] ; then
+    echo
   fi
   done
-  echo #New line
+  echo
 done
- 
+
 exit 0
