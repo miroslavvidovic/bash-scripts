@@ -8,17 +8,17 @@
 #   revision:  ---
 #   version:   1.0
 # -----------------------------------------------------------------------------
-# Requirements: 
-#   curl 
+# Requirements:
+#   curl
 # Description:
 #   Use the gitignore.io API to generate .gitignore files.
 # Usage:
 #   .gitignore file for linux, latex and python
-#   gia.sh linux,latex,pyhton 
-# 
+#   gia.sh linux,latex,pyhton
+#
 #   .gitignore file for java
 #   gia.sh java
-# 
+#
 #   list all supported languages and platforms
 #   gia.sh list
 # -----------------------------------------------------------------------------
@@ -39,7 +39,7 @@ main(){
   errors=$(echo "$output" | grep  ERROR)
   # Grep data
   data=$(echo "$output" | grep -v ERROR)
-  
+
   # Send data to standard output
   echo "$data"
   # Send errors to standard error
