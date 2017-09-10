@@ -5,8 +5,8 @@
 #   author:    Miroslav Vidovic
 #   file:      download-music.sh
 #   created:   06.09.2017.-19:14:47
-#   revision:
-#   version:   1.0
+#   revision:  09.09.2017.
+#   version:   1.1
 # -----------------------------------------------------------------------------
 # Requirements:
 #   youtube-dl
@@ -18,11 +18,9 @@
 # Script:
 SCRIPTNAME=$(basename "$0")
 
-download_list="$1"
-
 help_message(){
   echo "
-  Usage: $SCRIPTNAME URLFILE
+  Usage: $SCRIPTNAME [Options] URLFILE
 
   Download music from youtube.
 
@@ -44,7 +42,7 @@ check_existence(){
 check_for_empty_input(){
   if [ $# -eq 0 ];
   then
-      echo -e "Error:  No input \n"
+      echo -e "Error:  No input "
       help_message
       exit 1
     fi
@@ -52,16 +50,23 @@ check_for_empty_input(){
 
 main(){
   check_existence youtube-dl
-  check_for_empty_input "$@"
 
   while getopts 'h' flag; do
     case "${flag}" in
       h)  help_message
           exit 0
           ;;
+      *)
+         help_message
+         exit 1
+         ;;
     esac
   done
   shift $((OPTIND-1))
+
+  check_for_empty_input "$@"
+
+  download_list="$1"
 
   youtube-dl -o '%(title)s.%(ext)s' --extract-audio --audio-format mp3 --audio-quality 0 -a "$download_list" --restrict-filenames
 }
