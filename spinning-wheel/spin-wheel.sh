@@ -2,20 +2,20 @@
 
 # -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	spin-wheel.sh
-# 	27.08.2016.-12:10:47
+#   author:    Miroslav Vidovic
+#   file:      spin-wheel.sh
+#   created:   27.08.2016.-12:10:47
+#   revision:  19.09.2017.
+#   version:   1.1
 # -----------------------------------------------------------------------------
 # Description:
 #   Show the spinner animation while executing some long command
 # Usage:
-#   For this example:
 #   spin-wheel.sh sleep 10
 # -----------------------------------------------------------------------------
 # Script:
 
-show_spinner()
-{
+show_spinner() {
   # ID of the process the executing while the spinner is showing
   local -r pid="${1}"
   # Delay for the spinner animation
@@ -28,7 +28,7 @@ show_spinner()
   tput civis
 
   # Show the animation while the process is running
-  while [ "$(ps a | awk '{print $1}' | grep -w $pid)" ]; do
+  while [ "$(ps a | awk '{print $1}' | grep -w "$pid")" ]; do
     temp="${spinstr#?}"
     printf " [%c]  " "${spinstr}"
     spinstr=${temp}${spinstr%"${temp}"}

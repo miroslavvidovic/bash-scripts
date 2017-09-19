@@ -22,6 +22,9 @@ Download music from youtube with [youtube-dl](https://rg3.github.io/youtube-dl/)
 ## eclipse-management
 Manage multiple Eclipse versions and start them from the terminal.
 
+## gitingore-api
+Create useful .gitignore files for your projects with [gitignore.io](https://www.gitignore.io/)
+
 ## subtitles
 Download subtitles in multiple languages with a wrapper script for [subliminal](https://github.com/Diaoul/subliminal).
 
@@ -48,6 +51,9 @@ Randomly choose and play a video file from a given system path.
 
 ## random-variable
 Randomly generate variable names.
+
+## spinning-wheel
+Show the spinner animation while executing some long command.
 
 ## template-script
 Template script used to create bash scripts.
