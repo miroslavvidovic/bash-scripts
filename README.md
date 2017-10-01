@@ -16,6 +16,9 @@ Display battery percentage in a colorful format.
 ## chuck-norris
 Get a random joke from the [chucknorris](https://api.chucknorris.io/) API.
 
+## composer-wrapper
+A wrapper script for [composer](https://getcomposer.org/) to disable xdebug ini.
+
 ## dowload-music
 Download music from youtube with [youtube-dl](https://rg3.github.io/youtube-dl/).
 
