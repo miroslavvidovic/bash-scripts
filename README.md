@@ -52,6 +52,9 @@ Randomly choose and play a video file from a given system path.
 ## random-variable
 Randomly generate variable names.
 
+## server-backup
+Backup a Linux server.
+
 ## spinning-wheel
 Show the spinner animation while executing some long command.
 
