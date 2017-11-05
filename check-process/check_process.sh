@@ -5,8 +5,8 @@
 #   author:    Miroslav Vidovic
 #   file:      check_process.sh
 #   created:   19.12.2016.-15:59:03
-#   revision:  12.02.2017.
-#   version:   1.1
+#   revision:  05.11.2017.
+#   version:   1.2
 # -----------------------------------------------------------------------------
 # Requirements:
 #
@@ -18,6 +18,12 @@
 # Script:
 
 process="$1"
+
+if [ -z "$process" ]
+then
+  echo "Please provide a process name."
+  exit 1
+fi
 
 # Check if a proces is running
 if pgrep "$process" > /dev/null
