@@ -1,46 +1,47 @@
 #!/usr/bin/env bash
 
-# -------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Info:
-# 	Miroslav Vidovic
-# 	tpad.sh
-# 	19.05.2016.-13:50:23
-# -------------------------------------------------------
+#   author:    Miroslav Vidovic
+#   file:      tpad.sh
+#   created:   19.05.2016.-13:50:23
+#   revision:  05.11.2017.
+#   version:   1.1
+# -----------------------------------------------------------------------------
+# Requirements:
+#
 # Description:
 #   Activate or deactivate the touchpad on a laptop.
 # Usage:
 #   tpad.sh [a|d|s|h]
 #   Described in the help function below.
-# -------------------------------------------------------
+# -----------------------------------------------------------------------------
 # Script:
 
 # 12 is the id number of the device
 # the number can be checked with the xinput commmand
-
 ID=12
 
-function deactivate(){
-
+deactivate(){
   xinput set-prop $ID "Device Enabled" 0
 }
 
-function activate(){
-
+activate(){
   xinput set-prop $ID "Device Enabled" 1
 }
 
 # Check the status of the touchpad
-function check_status(){
+check_status(){
   # returns 1 or 0 value to the status variable
   status=$(xinput --list-props $ID | grep "Device Enabled" | cut -f3)
-  if [ $status -eq 1 ]; then
+  if [ "$status" -eq 1 ]; then
     echo "Touchpad active"
   else
     echo "Touchpad not active"
   fi
 }
 
-function help(){
+help(){
   cat<< EOF
   Enable or disable the touchpad quickly.
   Usage:
