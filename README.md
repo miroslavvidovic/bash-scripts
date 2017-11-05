@@ -61,6 +61,9 @@ Backup a Linux server.
 ## spinning-wheel
 Show the spinner animation while executing some long command.
 
+## touchpad
+Enable or disable the touchpad on your laptop.
+
 ## template-script
 Template script used to create bash scripts.
 
