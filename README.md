@@ -67,6 +67,9 @@ Enable or disable the touchpad on your laptop.
 ## template-script
 Template script used to create bash scripts.
 
+## unblock-packmanager
+List and kill all processes blocking apt or dpkg.
+
 ## vimmv
 Rename multiple files in Vim.
 
@@ -78,7 +81,7 @@ Rename multiple files in Vim.
 
 The MIT License (MIT)
 
-Copyright (c) 2017 Miroslav Vidović
+Copyright (c) 2017-2018 Miroslav Vidović
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
