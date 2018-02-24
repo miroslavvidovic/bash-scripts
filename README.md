@@ -73,6 +73,9 @@ List and kill all processes blocking apt or dpkg.
 ## vimmv
 Rename multiple files in Vim.
 
+## wifi-signal
+Check your wifi signal strength from the terminal.
+
 ## zenity-gcalcli
 [Zenity](https://help.gnome.org/users/zenity/stable/) form for the google calendar command line interface - [gcalcli](https://github.com/insanum/gcalcli).
 
